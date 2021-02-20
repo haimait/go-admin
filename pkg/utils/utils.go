@@ -4,8 +4,10 @@ import (
 	"crypto/md5"
 	"encoding/base64"
 	"encoding/hex"
+	"fmt"
 	uuid "github.com/satori/go.uuid"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -88,4 +90,15 @@ func RemoveRepByMap(slc []string) []string {
 		}
 	}
 	return result
+}
+
+//过滤http://127.0.0.1:8089/ 获取本地相对路径
+func FilterToLocalUrl(urlStr string) (localUrl string)  {
+	if strings.Index(urlStr,"127.0.0.1")>=0{
+		logoUrl,_:=url.Parse(urlStr)
+		localUrl = strings.Replace(urlStr,fmt.Sprintf("%s://%s/",logoUrl.Scheme,logoUrl.Host),"",1)
+	}else{
+		localUrl = urlStr
+	}
+	return localUrl
 }

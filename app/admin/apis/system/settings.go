@@ -6,6 +6,7 @@ import (
 	"go-admin/app/admin/service/dto"
 	"go-admin/common/apis"
 	"go-admin/common/log"
+	"go-admin/pkg/utils"
 	"net/http"
 	"strings"
 
@@ -70,6 +71,7 @@ func (e *SysSetting) CreateOrUpdateSetting(c *gin.Context) {
 
 	//更新操作
 	err = control.Bind(c)
+	control.Logo = utils.FilterToLocalUrl(control.Logo) //过滤为本地的相对路径
 	if err != nil {
 		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
 		return
@@ -97,3 +99,4 @@ func (e *SysSetting) CreateOrUpdateSetting(c *gin.Context) {
 	}
 	e.OK(c, object, "提交成功")
 }
+

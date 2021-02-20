@@ -46,3 +46,36 @@ func CreateAction(control dto.Control) gin.HandlerFunc {
 		c.Next()
 	}
 }
+// CreateAction 通用新增动作
+func CreateAction2(control dto.Control2) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		db, err := tools.GetOrm(c)
+		if err != nil {
+			log.Error(err)
+			return
+		}
+
+		msgID := tools.GenerateMsgIDFromContext(c)
+		//新增操作
+		req := control.Generate()
+		err = req.Bind(c)
+		if err != nil {
+			app.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
+			return
+		}
+		var object models.ActiveRecord2
+		object, err = req.GenerateM()
+		if err != nil {
+			app.Error(c, http.StatusInternalServerError, err, "模型生成失败")
+			return
+		}
+		err = db.WithContext(c).Create(object).Error
+		if err != nil {
+			log.Errorf("MsgID[%s] Create error: %s", msgID, err)
+			app.Error(c, http.StatusInternalServerError, err, "创建失败")
+			return
+		}
+		app.OK(c, object.GetId(), "创建成功")
+		c.Next()
+	}
+}

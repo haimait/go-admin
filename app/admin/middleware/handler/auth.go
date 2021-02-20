@@ -95,6 +95,9 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 		LoginLogToDB(c, status, msg, username)
 		global.RequestLogger.Error(e)
 	}
+	if e.Error()=="vip time overtime"{
+		return nil, e
+	}
 	return nil, jwt.ErrFailedAuthentication
 }
 

@@ -1,36 +1,4 @@
-<p align="center">
-  <img width="320" src="https://gitee.com/mydearzwj/image/raw/master/img/go-admin.svg">
-</p>
-
-
-<p align="center">
-  <a href="https://github.com/wenjianzhang/go-admin">
-    <img src="https://github.com/wenjianzhang/go-admin/workflows/build/badge.svg" alt="go-admin">
-  </a>
-  <a href="https://github.com/wenjianzhang/go-admin">
-    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
-  </a>
-    <a href="http://doc.zhangwj.com/go-admin-site/donate/">
-    <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
-  </a>
-</p>
-
-
-  [English](https://github.com/go-admin-team/go-admin/blob/master/README.en.md) | 简体中文
-
-
-##### 基于Gin + Vue + Element UI的前后端分离权限管理系统 
-
-系统初始化极度简单，只需要配置文件中，修改数据库连接，系统启动后会自动初始化数据库信息以及必须的基础数据
-
-[在线文档国际](https://wenjianzhang.github.io/go-admin-site)
-
-[在线文档国内](http://mydearzwj.gitee.io/go-admin-site/)
-
-[前端项目](https://github.com/go-admin-team/go-admin-ui)
-
-[视频教程](https://space.bilibili.com/565616721/channel/detail?cid=125737)
-
+## fofa后台管理系统
 ## ✨ 特性
 
 - 遵循 RESTful API 设计规范
@@ -78,33 +46,6 @@
 
 同时配套了系列教程包含视频和文档，如何从下载完成到熟练使用，强烈建议大家先看完这些教程再来实践本项目！！！
 
-### 轻松实现go-admin写出第一个应用 - 文档教程
-
-[步骤一 - 基础内容介绍](http://doc.zhangwj.com/go-admin-site/guide/intro/tutorial01.html)
-
-[步骤二 - 实际应用 - 编写增删改查](http://doc.zhangwj.com/go-admin-site/guide/intro/tutorial02.html) 
-
-### 手把手教你从入门到放弃 - 视频教程 
-
-[如何启动go-admin](https://www.bilibili.com/video/BV1z5411x7JG)
-
-[使用生成工具轻松实现业务](https://www.bilibili.com/video/BV1Dg4y1i79D)
-
-[v1.1.0版本代码生成工具-释放双手](https://www.bilibili.com/video/BV1N54y1i71P) [进阶]
-
-[多命令启动方式讲解以及IDE配置](https://www.bilibili.com/video/BV1Fg4y1q7ph)
-
-[go-admin菜单的配置说明](https://www.bilibili.com/video/BV1Wp4y1D715) [必看]
-
-[如何配置菜单信息以及接口信息](https://www.bilibili.com/video/BV1zv411B7nG) [必看]
-
-[go-admin权限配置使用说明](https://www.bilibili.com/video/BV1rt4y197d3) [必看]
-
-[go-admin数据权限使用说明](https://www.bilibili.com/video/BV1LK4y1s71e) [必看]
-
-
-**如有问题请先看上述使用文档和文章，若不能满足，欢迎 issue 和 pr ，视频教程和文档持续更新中**
-
 ## 🗞 系统架构
 
 <p align="center">
@@ -128,13 +69,12 @@ cd goadmin
 
 ```bash
 # 获取后端代码
-git clone https://github.com/go-admin-team/go-admin.git
+go-admin
 
 # 获取前端代码
-git clone https://github.com/go-admin-team/go-admin-ui.git
+go-admin-ui
 
 ```
-
 
 ### 启动说明
 
@@ -210,55 +150,8 @@ npm install --registry=https://registry.npm.taobao.org
 npm run dev
 ```
 
-## 🎬 在线体验
-> admin  /  123456
-
-演示地址：[http://www.zhangwj.com](http://www.zhangwj.com/#/login)
-
-
-## 📨 互动
-
-<table>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/wx.png" width="180px"></td>
-    <td><img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/qq.png" width="200px"></td>
-    <td><img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/qq2.png" width="200px"></td>
-  </tr>
-  <tr>
-    <td>微信</td>
-    <td>此群已满</td>
-    <td><a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=0f2bf59f5f2edec6a4550c364242c0641f870aa328e468c4ee4b7dbfb392627b"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="go-admin技术交流乙号" title="go-admin技术交流乙号"></a></td>
-  </tr>
-</table>
-  
-
-## 🤝 特别感谢
-[chengxiao](https://github.com/chengxiao)
-[gin](https://github.com/gin-gonic/gin)
-[casbin](https://github.com/casbin/casbin)
-[spf13/viper](https://github.com/spf13/viper)
-[gorm](https://github.com/jinzhu/gorm)
-[gin-swagger](https://github.com/swaggo/gin-swagger)
-[jwt-go](https://github.com/dgrijalva/jwt-go)
-[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-[ruoyi-vue](https://gitee.com/y_project/RuoYi-Vue)
-
-## 🤟 打赏
-
-> 如果你觉得这个项目帮助到了你，你可以帮作者买一杯果汁表示鼓励 :tropical_drink:
-
-
-<img class="no-margin" src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/pay.png"  height="200px" >
-
-## ❤️ 赞助者
-
-> 有部分是微信名称
-
-zhuqiyun LLL狐 星星之火 cjj770 Sam 唐*i 晓聪 aLong *渊 海马 魏镇坪 + 111 *哥 我的宇哥哥 *声 *节
-
 ## 🔑 License
 
 [MIT](https://github.com/go-admin-team/go-admin/blob/master/LICENSE.md)
 
-Copyright (c) 2020 wenjianzhang
 

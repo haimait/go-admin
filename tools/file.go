@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -16,6 +17,21 @@ import (
 
 func PathCreate(dir string) error {
 	return os.MkdirAll(dir, os.ModePerm)
+}
+
+func PathDirCreate(dirPath string) (err error) {
+	if len(dirPath)==0{
+		return  errors.New("dirPath is empty")
+	}
+	if _, err = os.Stat(dirPath); err != nil {
+		if !os.IsExist(err) {
+			err = os.MkdirAll(dirPath, os.ModePerm)
+			if err !=nil{
+				return err
+			}
+		}
+	}
+	return nil
 }
 
 // PathExist 判断目录是否存在

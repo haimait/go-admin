@@ -41,5 +41,5 @@ func (s *SysSetting) Update() (update SysSetting, err error) {
 type ResponseSystemConfig struct {
 	Name       string `json:"name" binding:"required"`        // 名称
 	Logo       string `json:"logo" binding:"required"`        // 头像
-	SettingsId int    `json:"settings_id" binding:"required"` // 头像
+	SettingsId int    `json:"settings_id" binding:"required"`
 }

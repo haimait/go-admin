@@ -24,12 +24,12 @@ func AuthInit() (*jwt.GinJWTMiddleware, error) {
 		Timeout:         timeout,
 		MaxRefresh:      time.Hour,
 		PayloadFunc:     handler.PayloadFunc,
-		IdentityHandler: handler.IdentityHandler,
-		Authenticator:   handler.Authenticator,
-		Authorizator:    handler.Authorizator,
-		Unauthorized:    handler.Unauthorized,
+		IdentityHandler: handler.IdentityHandler, //身份信息Map
+		Authenticator:   handler.Authenticator,   //登陆
+		Authorizator:    handler.Authorizator,    //设置上下文件
+		Unauthorized:    handler.Unauthorized,    //未经授权 返回的信息
 		TokenLookup:     "header: Authorization, query: token, cookie: jwt",
-		TokenHeadName:   "Bearer",
+		TokenHeadName:   "Bearer",  //TokenHead头名称
 		TimeFunc:        time.Now,
 	})
 

@@ -32,13 +32,13 @@ func InitRouter() {
 	if config.SslConfig.Enable {
 		r.Use(handler.TlsHandler())
 	}
-	r.Use(middleware.WithContextDb(middleware.GetGormFromConfig(global.Cfg)))
+	r.Use(middleware.WithContextDb(middleware.GetGormFromConfig(global.Cfg)))  //连接数据库
 
-	r.Use(common.Sentinel())
-	middleware.InitMiddleware(r)
+	r.Use(common.Sentinel()) //限流
+	middleware.InitMiddleware(r)  //中间件处理
 	// the jwt middleware
 	var err error
-	authMiddleware, err := middleware.AuthInit()
+	authMiddleware, err := middleware.AuthInit() //jwt验证new
 	tools.HasError(err, "JWT Init Error", 500)
 
 	// 注册系统路由

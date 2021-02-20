@@ -3,7 +3,6 @@ package migrate
 import (
 	"bytes"
 	"fmt"
-	"os"
 	"path"
 	"strconv"
 	"text/template"
@@ -52,9 +51,9 @@ func run() {
 		config.Setup(file.NewSource, file.WithPath(configYml))
 		
 		//2. 设置日志		
-		createDir(path.Join(config.LoggerConfig.Path,"bus"))
-		createDir(path.Join(config.LoggerConfig.Path,"job"))
-		createDir(path.Join(config.LoggerConfig.Path,"request"))
+		_ = tools.PathDirCreate(path.Join(config.LoggerConfig.Path,"bus"))
+		_ = tools.PathDirCreate(path.Join(config.LoggerConfig.Path,"job"))
+		_ = tools.PathDirCreate(path.Join(config.LoggerConfig.Path,"request"))
 		
 		global.Logger.Logger = logger.SetupLogger(config.LoggerConfig.Path, "bus")
 		global.JobLogger.Logger = logger.SetupLogger(config.LoggerConfig.Path, "job")
@@ -62,14 +61,6 @@ func run() {
 		_ = initDB()
 	} else {
 		_ = genFile()
-	}
-}
-
-func createDir(dirPath string)  {
-	if _, err := os.Stat(dirPath); err != nil {
-		if !os.IsExist(err) {
-			_ = os.MkdirAll(dirPath, os.ModePerm)
-		}
 	}
 }
 
