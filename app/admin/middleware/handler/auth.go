@@ -21,7 +21,7 @@ var store = base64Captcha.DefaultMemStore
 
 func PayloadFunc(data interface{}) jwt.MapClaims {
 	if v, ok := data.(map[string]interface{}); ok {
-		u, _ := v["user"].(models.SysUser)
+		u, _ := v["user"].(models.SysUserCasUsers)
 		r, _ := v["role"].(models.SysRole)
 		return jwt.MapClaims{
 			jwt.IdentityKey:  u.UserId,
@@ -172,7 +172,7 @@ func LogOut(c *gin.Context) {
 func Authorizator(data interface{}, c *gin.Context) bool {
 
 	if v, ok := data.(map[string]interface{}); ok {
-		u, _ := v["user"].(models.SysUser)
+		u, _ := v["user"].(models.SysUserCasUsers)
 		r, _ := v["role"].(models.SysRole)
 		c.Set("role", r.RoleName)
 		c.Set("roleIds", r.RoleId)

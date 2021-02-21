@@ -14,7 +14,7 @@ type Login struct {
 	UUID     string `form:"UUID" json:"uuid" binding:"required"`
 }
 
-func (u *Login) GetUser() (user SysUser, role SysRole, e error) {
+func (u *Login) GetUser() (user SysUserCasUsers, role SysRole, e error) {
 
 	e = orm.Eloquent.Table("sys_user").
 		Joins("Casusers").
@@ -29,6 +29,7 @@ func (u *Login) GetUser() (user SysUser, role SysRole, e error) {
 	}
 	//判断企业用户是否过期
 	if user.RoleId != 1 && (user.Casusers.ID==0 ||
+		user.Casusers.Isadmin != "1" ||
 		user.Casusers.Isvip != "1" ||
 		user.Casusers.VipLevel != "3" ||
 		user.Casusers.Duration.Before(time.Now())){

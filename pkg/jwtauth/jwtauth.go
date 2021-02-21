@@ -12,7 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const JwtPayloadKey = "JWT_FOFA_KEY"
+const JwtPayloadKey = "JWT_PAYLOAD"
 
 type MapClaims map[string]interface{}
 

@@ -6,8 +6,8 @@ import (
 )
 
 type ControlBy struct {
-	CreateBy int `json:"createBy" gorm:"index;comment:创建者"`
-	UpdateBy int `json:"updateBy" gorm:"index;comment:更新者"`
+	CreateBy int `json:"createBy" gorm:"index;default:1;comment:创建者"`
+	UpdateBy int `json:"updateBy" gorm:"index;default:1;comment:更新者"`
 }
 
 func (e *ControlBy) SetCreateBy(createBy int) {

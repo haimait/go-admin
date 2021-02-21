@@ -43,20 +43,20 @@ type SysUserId struct {
 }
 
 type SysUserB struct {
-	NickName string `gorm:"size:128" json:"nickName"` // 昵称
-	Phone    string `gorm:"size:11" json:"phone"`     // 手机号
-	RoleId   int    `gorm:"" json:"roleId"`           // 角色编码
-	Salt     string `gorm:"size:255" json:"salt"`     //盐
-	Avatar   string `gorm:"size:255" json:"avatar"`   //头像
-	Sex      string `gorm:"size:255" json:"sex"`      //性别
-	Email    string `gorm:"size:128" json:"email"`    //邮箱
-	DeptId   int    `gorm:"" json:"deptId"`           //部门编码
-	PostId   int    `gorm:"" json:"postId"`           //职位编码
-	CreateBy string `gorm:"size:128" json:"createBy"` //
-	UpdateBy string `gorm:"size:128" json:"updateBy"` //
-	Remark   string `gorm:"size:255" json:"remark"`   //备注
-	Status   string `gorm:"size:4;" json:"status"`
-	CasUid   int64  `json:"casUid"` //关联casusers表里的cas_uid
+	NickName  string `gorm:"size:128" json:"nickName"` // 昵称
+	Phone     string `gorm:"size:11" json:"phone"`     // 手机号
+	RoleId    int    `gorm:"" json:"roleId"`           // 角色编码
+	Salt      string `gorm:"size:255" json:"salt"`     //盐
+	Avatar    string `gorm:"size:255" json:"avatar"`   //头像
+	Sex       string `gorm:"size:255" json:"sex"`      //性别
+	Email     string `gorm:"size:128" json:"email"`    //邮箱
+	DeptId    int    `gorm:"" json:"deptId"`           //部门编码
+	PostId    int    `gorm:"" json:"postId"`           //职位编码
+	CasUid    int    `gorm:"size:128;default:0;comment:关联casusers表里的cas_uid" json:"cas_uid"`           //职位编码
+	CreateBy  string `gorm:"size:128" json:"createBy"` //
+	UpdateBy  string `gorm:"size:128" json:"updateBy"` //
+	Remark    string `gorm:"size:255" json:"remark"`   //备注
+	Status    string `gorm:"size:4;" json:"status"`
 	BaseModel
 
 	DataScope string `gorm:"-" json:"dataScope"`
@@ -67,7 +67,10 @@ type SysUser struct {
 	SysUserId
 	LoginM
 	SysUserB
-	Casusers   Casusers `json:"casusers" gorm:"foreignKey:cas_uid;references:cas_uid"`
+}
+type SysUserCasUsers struct {
+	SysUser
+	Casusers Casusers  `gorm:"foreignKey:cas_uid;references:cas_uid" json:"casusers"`
 }
 
 func (SysUser) TableName() string {
@@ -83,8 +86,8 @@ type SysUserPage struct {
 	SysUserId
 	SysUserB
 	LoginM
-	Casusers   Casusers `json:"casusers" gorm:"foreignKey:cas_uid;references:cas_uid"`
-	DeptName string `gorm:"-" json:"deptName"`
+	DeptName string `json:"deptName"`
+	Casusers Casusers `gorm:"foreignKey:CasUid;references:CasUid" json:"casusers"`
 }
 
 type SysUserView struct {
