@@ -43,19 +43,20 @@ type SysUserId struct {
 }
 
 type SysUserB struct {
-	NickName  string `gorm:"size:128" json:"nickName"` // 昵称
-	Phone     string `gorm:"size:11" json:"phone"`     // 手机号
-	RoleId    int    `gorm:"" json:"roleId"`           // 角色编码
-	Salt      string `gorm:"size:255" json:"salt"`     //盐
-	Avatar    string `gorm:"size:255" json:"avatar"`   //头像
-	Sex       string `gorm:"size:255" json:"sex"`      //性别
-	Email     string `gorm:"size:128" json:"email"`    //邮箱
-	DeptId    int    `gorm:"" json:"deptId"`           //部门编码
-	PostId    int    `gorm:"" json:"postId"`           //职位编码
-	CreateBy  string `gorm:"size:128" json:"createBy"` //
-	UpdateBy  string `gorm:"size:128" json:"updateBy"` //
-	Remark    string `gorm:"size:255" json:"remark"`   //备注
-	Status    string `gorm:"size:4;" json:"status"`
+	NickName string `gorm:"size:128" json:"nickName"` // 昵称
+	Phone    string `gorm:"size:11" json:"phone"`     // 手机号
+	RoleId   int    `gorm:"" json:"roleId"`           // 角色编码
+	Salt     string `gorm:"size:255" json:"salt"`     //盐
+	Avatar   string `gorm:"size:255" json:"avatar"`   //头像
+	Sex      string `gorm:"size:255" json:"sex"`      //性别
+	Email    string `gorm:"size:128" json:"email"`    //邮箱
+	DeptId   int    `gorm:"" json:"deptId"`           //部门编码
+	PostId   int    `gorm:"" json:"postId"`           //职位编码
+	CreateBy string `gorm:"size:128" json:"createBy"` //
+	UpdateBy string `gorm:"size:128" json:"updateBy"` //
+	Remark   string `gorm:"size:255" json:"remark"`   //备注
+	Status   string `gorm:"size:4;" json:"status"`
+	CasUid   int64  `json:"casUid"` //关联casusers表里的cas_uid
 	BaseModel
 
 	DataScope string `gorm:"-" json:"dataScope"`
@@ -66,6 +67,7 @@ type SysUser struct {
 	SysUserId
 	LoginM
 	SysUserB
+	Casusers   Casusers `json:"casusers" gorm:"foreignKey:cas_uid;references:cas_uid"`
 }
 
 func (SysUser) TableName() string {
@@ -81,6 +83,7 @@ type SysUserPage struct {
 	SysUserId
 	SysUserB
 	LoginM
+	Casusers   Casusers `json:"casusers" gorm:"foreignKey:cas_uid;references:cas_uid"`
 	DeptName string `gorm:"-" json:"deptName"`
 }
 
@@ -198,7 +201,8 @@ func (e *SysUser) GetList() (SysUserView []SysUserView, err error) {
 
 func (e *SysUser) GetPage(pageSize int, pageIndex int) ([]SysUserPage, int, error) {
 	var doc []SysUserPage
-	table := orm.Eloquent.Select("sys_user.*,sys_dept.dept_name").Table(e.TableName())
+	table := orm.Eloquent.Select("sys_user.*,sys_dept.dept_name").Table(e.TableName()).
+	Preload("Casusers")
 	table = table.Joins("left join sys_dept on sys_dept.dept_id = sys_user.dept_id")
 
 	if e.Username != "" {

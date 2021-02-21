@@ -9,3 +9,8 @@ type ActiveRecord interface {
 	Generate() ActiveRecord
 	GetId() interface{}
 }
+type ActiveRecord2 interface {
+	schema.Tabler
+	Generate() ActiveRecord2
+	GetId() interface{}
+}

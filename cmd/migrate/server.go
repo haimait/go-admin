@@ -3,6 +3,7 @@ package migrate
 import (
 	"bytes"
 	"fmt"
+	"path"
 	"strconv"
 	"text/template"
 	"time"
@@ -47,7 +48,12 @@ func run() {
 		fmt.Println(`start init`)
 		//1. 读取配置
 		config.Setup(file.NewSource, file.WithPath(configYml))
-		//2. 设置日志
+		
+		//2. 设置日志		
+		_ = tools.PathDirCreate(path.Join(config.LoggerConfig.Path,"bus"))
+		_ = tools.PathDirCreate(path.Join(config.LoggerConfig.Path,"job"))
+		_ = tools.PathDirCreate(path.Join(config.LoggerConfig.Path,"request"))
+		
 		global.Logger.Logger = logger.SetupLogger(config.LoggerConfig.Path, "bus")
 		global.JobLogger.Logger = logger.SetupLogger(config.LoggerConfig.Path, "job")
 		global.RequestLogger.Logger = logger.SetupLogger(config.LoggerConfig.Path, "request")

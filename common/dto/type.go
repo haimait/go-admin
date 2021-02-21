@@ -19,3 +19,9 @@ type Control interface {
 	GenerateM() (models.ActiveRecord, error)
 	GetId() interface{}
 }
+type Control2 interface {
+	Generate() Control2
+	Bind(ctx *gin.Context) error
+	GenerateM() (models.ActiveRecord2, error)
+	GetId() interface{}
+}

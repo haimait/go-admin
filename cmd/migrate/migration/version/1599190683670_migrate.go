@@ -57,9 +57,9 @@ func _1599190683670Test(db *gorm.DB, version string) error {
 			{DictId: 10, DictName: "通知状态", DictType: "sys_notice_status", Status: "2", CreateBy: "1", UpdateBy: "", Remark: "通知状态列表", BaseModel: models.BaseModel{CreatedAt: time.Now(), UpdatedAt: time.Now()}},
 		}
 
-		list8 := []models.SysUser{
-			{models.SysUserId{1}, models.LoginM{models.UserName{"admin"}, models.PassWord{"$2a$10$cKFFTCzGOvaIHHJY2K45Zuwt8TD6oPzYi4s5MzYIBAWCLL6ZhouP2"}}, models.SysUserB{"zhangwj", "13818888888", 1, "", "", "0", "1@qq.com", 1, 1, "1", "1", "", "2", models.BaseModel{CreatedAt: time.Now(), UpdatedAt: time.Now()}, "", ""}},
-		}
+		//list8 := []models.SysUser{
+		//	{models.SysUserId{1}, models.LoginM{models.UserName{"admin"}, models.PassWord{"$2a$10$cKFFTCzGOvaIHHJY2K45Zuwt8TD6oPzYi4s5MzYIBAWCLL6ZhouP2"}}, models.SysUserB{"zhangwj", "13818888888", 1, "", "", "0", "1@qq.com", 1, 1, "1", "1", "", "2", models.BaseModel{CreatedAt: time.Now(), UpdatedAt: time.Now()}, "", ""}},
+		//}
 
 		list9 := []DictData{
 			{DictCode: 1, DictSort: 0, DictLabel: "正常", DictValue: "2", DictType: "sys_normal_disable", CssClass: "", ListClass: "", IsDefault: "", Status: "2", Default: "", CreateBy: "1", UpdateBy: "", Remark: "系统正常", BaseModel: models.BaseModel{CreatedAt: time.Now(), UpdatedAt: time.Now()}},
@@ -129,10 +129,10 @@ func _1599190683670Test(db *gorm.DB, version string) error {
 			return err
 		}
 
-		err = tx.Create(list8).Error
-		if err != nil {
-			return err
-		}
+		//err = tx.Create(list8).Error
+		//if err != nil {
+		//	return err
+		//}
 
 		err = tx.Create(list9).Error
 		if err != nil {
